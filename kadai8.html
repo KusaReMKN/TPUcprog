@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data8.txt - Cプログラムちょっと支援</title>
+    <style>
+        nav>* {
+            display: inline-block;
+            font-size: 80%;
+            padding-right: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>data8.txt - 文字列を生成</h1>
+    <h2>必要な操作</h2>
+    <ol>
+        <li>下の[生成]ボタンを押します</li>
+        <li>隣のtextareaに、文字列が生成されます</li>
+        <li>[コピーする]ボタンを押して文字列をコピーします</li>
+        <li>適当なディレクトリに "data8.txt" を作成します</li>
+        <li>"data8.txt" の中身にコピーした文字列をペーストします</li>
+        <li>自分の作ったプログラムをデバッグして正常に動作するか確認します</li>
+    </ol>
+    <textarea name="out" id="out" cols="30" rows="11" placeholder="ここに生成されます"></textarea>
+    <button onclick="out()">生成</button>
+    <button onclick="copyText()">コピーする</button>
+    <p id="cnt_str">ここに生成された文字数を表示します</p>
+    <h2>仕様</h2>
+    <ul>
+        <li>1行の文字列を生成</li>
+        <li>文字列はaからz、AからZ、0から9までのランダムな文字で生成</li>
+        <li>文字数は1から100文字まで</li>
+    </ul>
+    <h2>注意事項</h2>
+    <p>このサイトの文字列生成は、TPU IR プログラミング演習2の演習課題のデバッグ支援ツールとして提供しています。このサイトを、例えばランダムなパスワード生成など、本来の用途以外に使用しないでください。</p>
+    <p>このサイトを利用したことによる損失・事故などの責任を、当コンテンツ製作者は一切負いかねます。</p>
+    <p>TPU IRとはToyama Prefectural University Department of Intelligent Robotics (富山県立大学知能ロボット工学科)を省略したものです。</p>
+    <hr>
+    <nav>
+        <p><a href="./index.html">Cプログラムちょっと支援 - ホーム へ</a></p>
+        <p><a href="./">GitHub</a></p>
+        <small>
+            <p>&copy; 2023 もやしくん</p>
+        </small>
+    </nav>
+</body>
+
+<script type="text/javascript">
+    var e = document.getElementById('out');
+    var o = document.getElementById('cnt_str');
+    function out() {
+        var rnd = Math.floor(Math.random() * 100 % 100 + 1);
+        e.value = '';
+        e.value = make_str(rnd) + '\n';
+        o.innerText = `${rnd}文字生成されました`;
+    }
+    function make_str(rnd) {
+        var def_str = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890';
+        var rand_str = '';
+        for (let i = 0; i < rnd; i++) {
+            rand_str += def_str[Math.floor(Math.random() * def_str.length % def_str.length)];
+        }
+
+        return rand_str;
+    }
+
+    function copyText() {
+        e.select();
+        document.execCommand('copy');
+    }
+</script>
+
+</html>

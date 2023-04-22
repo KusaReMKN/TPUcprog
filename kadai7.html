@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data7.txt - Cプログラムちょっと支援</title>
+    <style>
+        nav>* {
+            display: inline-block;
+            font-size: 80%;
+            padding-right: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>data7.txt - 10行4列の整数40個を生成</h1>
+    <h2>必要な操作</h2>
+    <ol>
+        <li>下の[生成]ボタンを押します</li>
+        <li>隣のtextareaに、10行4列の整数40個が生成されます</li>
+        <li>[コピーする]ボタンを押して整数行列をコピーします</li>
+        <li>適当なディレクトリに "data7.txt" を作成します</li>
+        <li>"data7.txt" の中身にコピーした整数行列をペーストします</li>
+        <li>自分の作ったプログラムをデバッグして正常に動作するか確認します</li>
+    </ol>
+    <textarea name="out" id="out" cols="30" rows="11" placeholder="ここに生成されます"></textarea>
+    <button onclick="out()">生成</button>
+    <button onclick="copyText()">コピーする</button>
+    <h2>仕様</h2>
+    <ul>
+        <li>10行4列の整数40個を生成</li>
+        <li>値は0から999までのランダムな整数値</li>
+        <li>値はスペース区切り</li>
+    </ul>
+    <hr>
+    <nav>
+        <p><a href="./index.html">Cプログラムちょっと支援 - ホーム へ</a></p>
+        <p><a href="./">GitHub</a></p>
+        <small>
+            <p>&copy; 2023 もやしくん</p>
+        </small>
+    </nav>
+</body>
+
+<script type="text/javascript">
+    var e = document.getElementById('out');
+    function out() {
+        e.value = make_4() + make_4() + make_4() + make_4() + make_4() + make_4() + make_4() + make_4() + make_4() + make_4();
+    }
+    function make_4() {
+        return (Math.floor(Math.random() * 1000 % 1000) + ' ' + Math.floor(Math.random() * 1000 % 1000) + ' ' + Math.floor(Math.random() * 1000 % 1000) + ' ' + Math.floor(Math.random() * 1000 % 1000) + '\n');
+    }
+
+    function copyText() {
+        e.select();
+        document.execCommand('copy');
+    }
+</script>
+
+</html>
