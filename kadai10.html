@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>data10.txt - Cプログラムちょっと支援</title>
+    <title>課題10 - Cプログラムちょっと支援</title>
     <style>
         nav>* {
             display: inline-block;
@@ -16,8 +16,40 @@
 </head>
 
 <body>
-    <h1>data10.txt - n次ベクトルを2つ生成</h1>
-    <p>Coming soon...</p>
+    <h1>課題10 - n次ベクトルを2つ生成</h1>
+
+    <h2>必要な操作</h2>
+    <ol>
+        <li>ベクトルの次数を指定します</li>
+        <li>下の[生成]ボタンを押します</li>
+        <li>2つのベクトルが生成されます</li>
+        <li>[ベクトルxをコピーする]ボタンを押してベクトルをコピーします</li>
+        <li>コピーしたベクトルはデバックで使用できます</li>
+        <li>自分の作ったプログラムをデバッグして正常に動作するか確認します</li>
+    </ol>
+
+    <label for="n">nを指定(n>0, nは整数): </label>
+    <input type="number" name="n" id="nmb" min="1" value="3"><br>
+
+    <label for="a">ベクトルa: </label>
+    <input type="text" name="a" id="a" readonly>
+    <button onclick="copyText(a)">ベクトルaをコピーする</button><br>
+    <label for="b">ベクトルb: </label>
+    <input type="text" name="b" id="b" readonly>
+    <button onclick="copyText(b)">ベクトルbをコピーする</button><br>
+
+    <button onclick="out()" value="生成">生成</button>
+
+    <h2>仕様</h2>
+    <ul>
+        <li>任意の次数のベクトルを2つ生成</li>
+        <li>ベクトルの要素は-99.99から99.99までの小数第二位までの値</li>
+    </ul>
+
+    <h2>ヒント</h2>
+    <p><a href="https://onlinejudge.u-aizu.ac.jp/problems/ITP1_10_D" target="_blank">AIZU ONLINE JUDGE</a>に類似問題がありますね…</p>
+
+
     <hr>
     <nav>
         <p><a href="./index.html">Cプログラムちょっと支援 - ホーム へ</a></p>
@@ -27,6 +59,42 @@
         </small>
     </nav>
 </body>
+
+<script type="text/javascript">
+    var n = document.getElementById('nmb');
+    var out_a = document.getElementById('a');
+    var out_b = document.getElementById('b');
+    function out() {
+        console.log();
+        out_a.value = make_vec(n.value);
+        out_b.value = make_vec(n.value);
+    }
+
+    function make_vec(n) {
+        var vec = '';
+        for (let i = 0; i < n; i++) {
+            var sign;
+            if (Math.floor(Math.random() * 2 % 2)) sign = -1; else sign = 1;
+            vec += Math.floor(Math.random() * 10000 % 10000) / 100 * sign;
+            if (i != n - 1) vec += ' ';
+        }
+        return vec;
+    }
+
+    function copyText(id) {
+        switch (id) {
+            case a:
+                out_a.select();
+                break;
+            case b:
+                out_b.select();
+                break;
+            default:
+                break;
+        }
+        document.execCommand('copy');
+    }
+</script>
 
 
 </html>
