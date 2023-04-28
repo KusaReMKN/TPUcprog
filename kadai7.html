@@ -32,7 +32,7 @@
     <h2>仕様</h2>
     <ul>
         <li>10行4列の整数40個を生成</li>
-        <li>値は0から999までのランダムな整数値</li>
+        <li>値は-999から999までのランダムな整数値</li>
         <li>値はスペース区切り</li>
     </ul>
     <hr>
@@ -48,10 +48,19 @@
 <script type="text/javascript">
     var e = document.getElementById('out');
     function out() {
-        e.value = make_4() + make_4() + make_4() + make_4() + make_4() + make_4() + make_4() + make_4() + make_4() + make_4();
-    }
-    function make_4() {
-        return (Math.floor(Math.random() * 1000 % 1000) + ' ' + Math.floor(Math.random() * 1000 % 1000) + ' ' + Math.floor(Math.random() * 1000 % 1000) + ' ' + Math.floor(Math.random() * 1000 % 1000) + '\n');
+        e.value = '';
+        var ret = 3;
+        for (var i = 0; i < 40; i++) {
+            var sign;
+            if (Math.floor(Math.random() * 10 % 2)) sign = -1; else sign = 1;
+            e.value += sign * Math.floor(Math.random() * 1000 % 1000);
+            if (i == ret) {
+                e.value += '\n';
+                ret += 4;
+            } else {
+                e.value += ' ';
+            }
+        }
     }
 
     function copyText() {
